@@ -1,5 +1,4 @@
 import pandas as pd
-from pandas.api.types import CategoricalDtype
 
 df = pd.read_csv(
     'base.csv',
@@ -12,8 +11,8 @@ new = df["categoria_4"].str.split(". ", n=1, expand=True)
 df["Order"] = new[0]
 df["Categoria"] = new[1]
 
-#order = df["Order"].astype(str).astype(int)
-#categoria = df["Categoria"]
+order = df["Order"].astype(str).astype(int)
+categoria = df["Categoria"]
 
 df.drop(columns=["categoria_4"], inplace=True)
 
@@ -29,6 +28,6 @@ categories = pd.Categorical(
 
 print(categories)
 
-# df["Categoria"] = df["Categoria"].cat.codes
-#
-# print(df.head())
+df["Categoria"] = df["Categoria"].cat.codes
+
+print(df.head())
